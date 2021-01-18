@@ -28,6 +28,11 @@ public class ListController {
         columnChoices.put("positionType", "Position Type");
         columnChoices.put("coreCompetency", "Skill");
 
+        ArrayList<String> all = new ArrayList<>();
+        all.add("View All");
+
+        tableChoices.put("all", all);
+
         tableChoices.put("employer", JobData.getAllEmployers());
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
@@ -60,4 +65,7 @@ public class ListController {
 
         return "list-jobs";
     }
+
+
+
 }
