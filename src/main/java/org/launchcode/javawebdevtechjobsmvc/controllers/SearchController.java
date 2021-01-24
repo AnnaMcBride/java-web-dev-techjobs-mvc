@@ -30,15 +30,14 @@ public class SearchController {
     @PostMapping(value = "results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
        ArrayList<Job> jobs;
-        if(searchTerm != "jobs") {
-           model.addAttribute("No results");
-        }
+
        if(searchTerm == "all" && searchType == ""){
           jobs = JobData.findAll();
        } else {
            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
        }
-
+       model.addAttribute("noResult", "No results found.");
+       model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
        model.addAttribute("columns", columnChoices);
        model.addAttribute("jobs", jobs);
         return "search";
